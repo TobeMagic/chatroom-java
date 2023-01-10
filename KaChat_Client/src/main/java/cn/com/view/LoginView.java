@@ -69,8 +69,8 @@ public class LoginView extends JFrame {
         fPicture = new JLabel();
         login = new JLabel();
         buttonClickL = new JLabel();
-        quit = new JLabel("●");
-        minimize = new JLabel("●");
+        quit = new JLabel("●");  // 退出
+        minimize = new JLabel("●"); // 最小化
         munuBar = new JLabel();
         userIconL = new JLabel();
         msg = new JLabel();
@@ -129,7 +129,7 @@ public class LoginView extends JFrame {
         fPicture.setIcon(new ImageIcon(ResourcesUtils.getResource("/view/icon/picture/picture4.png", "picture4", ".png").getAbsolutePath()));
 
         munuBar.setBounds(30,15,470,70);
-        munuBar.setText("<html><div style=\"font-family:Microsoft YaHei;color: gray;font-size:12px\" >KaChat</div></html>");
+        munuBar.setText("<html><div style=\"font-family:Microsoft YaHei;color: gray;font-size:12px\" >Magic-Chat</div></html>");
 
         quit.setBounds(535,37,40,30);
         quit.setFont(buttonFont);

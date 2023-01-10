@@ -34,17 +34,17 @@ public class ClientAction {
     private MainAddCard mainAddCard;
 
     public ClientAction() {
-        action = this;
+        action = this;  // 默认为自身对象
         init();
     }
 
     private void init() {
-        System.setProperty("sun.java2d.noddraw", "true");
+        System.setProperty("sun.java2d.noddraw", "true"); // 设置swing系统的静态变量，存贮在内存中 完全关闭JAVA 2D/3D的DirectDraw或者Direct3D的功能
         loginView = new LoginView();
         Animate.surfaceIn(loginView);
         Animate.slideXOnL(loginView.pictures);
-        clientListener = new ClientListener("124.222.55.142",7758);
-//        clientListener = new ClientListener("localhost", 7758);
+//        clientListener = new ClientListener("127.0.0.1",9090);
+        clientListener = new ClientListener("localhost", 9090);
 //        113.245.83.186
 //        clientListener = new ClientListener("169.254.183.20",7758);
 

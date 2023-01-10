@@ -9,7 +9,6 @@
         <module name="KaChat_Common" />
         <module name="Client" />
         <module name="Server" />
-        <module name="KaChat_Server" />
         <module name="KaChat_Client" />
       </profile>
     </annotationProcessing>
