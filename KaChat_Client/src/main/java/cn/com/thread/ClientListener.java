@@ -3,7 +3,6 @@ package cn.com.thread;
 
 import cn.com.action.ClientAction;
 import cn.com.pojo.Message;
-import cn.com.pojo.User;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -19,11 +18,11 @@ public class ClientListener implements Runnable{
     private ObjectOutputStream objectOutputStream;
     private String hostname;
     private int port;
-    private boolean isConnected;
+    public boolean isConnected;
 
     public ClientListener(String hostname, int port)  {
         isConnected = false;
-        heartBeat = new HeartBeat(50000,this);
+        heartBeat = new HeartBeat(50000,this);  // 心跳 （连接确认）
         this.hostname = hostname;
         this.port = port;
     }
@@ -51,7 +50,7 @@ public class ClientListener implements Runnable{
                     ClientAction.action.connectMSG(isConnected);
                 }
                 heartBeat.stop();
-                connect();
+                connect();  // 循环请求
             }
         }
 
@@ -68,9 +67,9 @@ public class ClientListener implements Runnable{
                 while (isConnected){
                     Message message = (Message)objectInputStream.readObject();
                     switch (message.getMessageType()){
-                        case JOIN:
-                            ClientAction.action.loginOK(message.getFromID(),(User)message.getData());
-                            break;
+//                        case JOIN:
+//                            ClientAction.action.loginOK(message.getFromID(),(User)message.getData());
+//                            break;
                         case MESSAGE:
                             String msg = (String)message.getData();
                             String fromID = message.getFromID();
@@ -78,15 +77,15 @@ public class ClientListener implements Runnable{
                             break;
                         case NOTICE:
                             if (message.getFromID().equals("fdState")){
-                                ClientAction.action.fdState(message.getToID());
+//                                ClientAction.action.fdState(message.getToID());
                             }else if (message.getFromID().equals("register")){
-                                ClientAction.action.registerOK(message.getToID());
+//                                ClientAction.action.registerOK(message.getToID());
                             }else if (message.getFromID().equals("addUserOK")){
-                                ClientAction.action.addUserOK((User) message.getData());
+//                                ClientAction.action.addUserOK((User) message.getData());
                             }else if (message.getFromID().equals("addUserNotice")){
-                                ClientAction.action.addUserNotice((User) message.getData());
+//                                ClientAction.action.addUserNotice((User) message.getData());
                             }else if (message.getFromID().equals("upDataByUser")){
-                                ClientAction.action.upDataByUserOK((User) message.getData());
+//                                ClientAction.action.upDataByUserOK((User) message.getData());
                             }
                     }
 
@@ -98,22 +97,16 @@ public class ClientListener implements Runnable{
 //                e.printStackTrace();
             }finally {
                 isConnected = false;
-                if (socket!=null){
-                    try {
-                        socket.close();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }
+                closeSocket();
             }
         }
 
 
     }
 
-    public boolean isConnect() {
-        return isConnected;
-    }
+//    public boolean isConnect() {
+//        return isConnected;
+//    }
     public void closeSocket() {
         if(socket==null){
             return;

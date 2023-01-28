@@ -29,9 +29,10 @@ public class ChatView extends JLabel {
     ScrollBarUI scrollBarUIOfIn;
     public JScrollBar jScrollBarOfOut;
     public JScrollBar jScrollBarOfIn;
-    public ChatView(String toID){
+//    public ChatView(String toID){
+    public ChatView(){
         self = this;
-        this.toID = toID;
+//        this.toID = toID;
         chatOut = new JPanel();
 
 

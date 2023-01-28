@@ -83,10 +83,10 @@ public class User implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return ID.equals(user.ID);
+        if (this == o) return true; // 是否同一个类
+        if (o == null || getClass() != o.getClass()) return false; // 如果对方为null 类不同返回false
+        User user = (User) o; // 隐式转换，判断id是否相同
+        return ID.equals(user.ID); // id 是否相同
     }
 
     @Override

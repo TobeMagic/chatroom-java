@@ -72,35 +72,35 @@ public abstract class Animate {
             }
         });
     }
-
-    public static void slideY(Component self, Point target){
-        ThreadPool.poolExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                synchronized (self){
-                    double selfY =  self.getLocation().getY();
-                    double targetY =target.getLocation().getY()-5;
-
-                    if (selfY==targetY){
-                        return;
-                    }
-                    double deviation = (targetY-selfY)/50f;
-                    Point p = new Point(self.getLocation());
-                    for (double i = selfY;p.getY()!=targetY;i+=deviation){
-                        p.setLocation(p.getX(),i);
-                        self.setLocation(p);
-                        try {
-                            Thread.sleep(1);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-
-            }
-        });
-
-    }
+//
+//    public static void slideY(Component self, Point target){
+//        ThreadPool.poolExecutor.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                synchronized (self){
+//                    double selfY =  self.getLocation().getY();
+//                    double targetY =target.getLocation().getY()-5;
+//
+//                    if (selfY==targetY){
+//                        return;
+//                    }
+//                    double deviation = (targetY-selfY)/50f;
+//                    Point p = new Point(self.getLocation());
+//                    for (double i = selfY;p.getY()!=targetY;i+=deviation){
+//                        p.setLocation(p.getX(),i);
+//                        self.setLocation(p);
+//                        try {
+//                            Thread.sleep(1);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }
+//
+//            }
+//        });
+//
+//    }
     public static void surfaceOut(Window window){
         ThreadPool.poolExecutor.execute(new Runnable() {
             @Override
@@ -127,7 +127,7 @@ public abstract class Animate {
         ThreadPool.poolExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                synchronized (window){
+                synchronized (window){  // 保证只运行该线程一个
                     window.setOpacity(0f);
                     Point p =  window.getLocation();
                     window.setVisible(true);
@@ -146,43 +146,43 @@ public abstract class Animate {
             }
         });
     }
-    public static void changeSelect(Component self,Point target){
-        ThreadPool.poolExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                synchronized (self){
-                    int selfX = self.getX();
-                    if (self.getY()==target.getY()-5){
-                        return;
-                    }
-                    float distance = selfX+self.getWidth();
-                    distance/=100;
-                    Point p = new Point(self.getLocation());
-                    while (self.getX()+self.getWidth()>0){
-                        p.setLocation(p.getX()-distance,p.getY());
-                        self.setLocation(p);
-                        try {
-                            Thread.sleep(2);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    p.setLocation(p.getX(),target.getY()-5);
-                    while (self.getX()<selfX){
-                        p.setLocation(p.getX()+distance,p.getY());
-                        self.setLocation(p);
-                        try {
-                            Thread.sleep(2);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    p.setLocation(selfX,p.getY());
-                    self.setLocation(p);
-                }
-            }
-        });
-    }
+//    public static void changeSelect(Component self,Point target){
+//        ThreadPool.poolExecutor.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                synchronized (self){
+//                    int selfX = self.getX();
+//                    if (self.getY()==target.getY()-5){
+//                        return;
+//                    }
+//                    float distance = selfX+self.getWidth();
+//                    distance/=100;
+//                    Point p = new Point(self.getLocation());
+//                    while (self.getX()+self.getWidth()>0){
+//                        p.setLocation(p.getX()-distance,p.getY());
+//                        self.setLocation(p);
+//                        try {
+//                            Thread.sleep(2);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                    p.setLocation(p.getX(),target.getY()-5);
+//                    while (self.getX()<selfX){
+//                        p.setLocation(p.getX()+distance,p.getY());
+//                        self.setLocation(p);
+//                        try {
+//                            Thread.sleep(2);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                    p.setLocation(selfX,p.getY());
+//                    self.setLocation(p);
+//                }
+//            }
+//        });
+//    }
 
 
     public static  void showCard(CardLayout cardLayout, Container card, String name,int type) {
@@ -264,23 +264,23 @@ public abstract class Animate {
             }
         });
     }
-    public static  void vanishInPoint(Frame jFrame,JLabel jLabel,CardLayout cardLayout, Point toPoint){
+    public static  void vanishInPoint(Frame jFrame, JLabel jLabel, CardLayout cardLayout, Point toPoint) {
         ThreadPool.poolExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                synchronized (jFrame){
+                synchronized (jFrame) {
 
                     Point p = jFrame.getLocation();
                     Dimension d = jFrame.getSize();
                     double speed = 0.05f;
-                    double scaleHgap = d.getWidth()/ (4/speed);
-                    double scaleVgap = d.getHeight()/(4/speed);
-                    double scaleX = (toPoint.getX()-p.getX())/ (2/speed);
-                    double scaleY =(toPoint.getY()-p.getY())/ (2/speed);
-                    for (float i = 1f;i>0f;i-=speed){
-                        p.setLocation(p.getX()+scaleX,p.getY()+scaleY);
-                        cardLayout.setHgap((int) (cardLayout.getHgap()+scaleHgap));
-                        cardLayout.setVgap((int) (cardLayout.getVgap()+scaleVgap));
+                    double scaleHgap = d.getWidth() / (4 / speed);
+                    double scaleVgap = d.getHeight() / (4 / speed);
+                    double scaleX = (toPoint.getX() - p.getX()) / (2 / speed);
+                    double scaleY = (toPoint.getY() - p.getY()) / (2 / speed);
+                    for (float i = 1f; i > 0f; i -= speed) {
+                        p.setLocation(p.getX() + scaleX, p.getY() + scaleY);
+                        cardLayout.setHgap((int) (cardLayout.getHgap() + scaleHgap));
+                        cardLayout.setVgap((int) (cardLayout.getVgap() + scaleVgap));
                         jLabel.setLayout(cardLayout);
                         jFrame.setLocation(p);
                         jFrame.setOpacity(i);
@@ -291,12 +291,13 @@ public abstract class Animate {
                             e.printStackTrace();
                         }
                     }
-                    cardLayout.setHgap(jFrame.getHeight()/2);
-                    cardLayout.setVgap(jFrame.getWidth()/2);
+                    cardLayout.setHgap(jFrame.getHeight() / 2);
+                    cardLayout.setVgap(jFrame.getWidth() / 2);
                     jLabel.setLayout(cardLayout);
                     jFrame.setLocation(toPoint);
                     jFrame.setOpacity(0);
-                    jLabel.revalidate();;
+                    jLabel.revalidate();
+                    ;
                 }
             }
         });
@@ -347,51 +348,51 @@ public abstract class Animate {
 
     }
 
-    public static void slideOut_Box(Box vB, Container self,int type) {
-        ThreadPool.poolExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                synchronized (self){
-                    Point p = self.getLocation();
-                    Dimension d = self.getSize();
-                    if (type == Type_Y){
-                        double scale = d.getHeight()/100f;
-                        while (d.getHeight()>0){
-                            d.setSize(d.getWidth(),d.getHeight()-scale);
-                            self.setSize(d);
-                            try {
-                                Thread.sleep(2);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                    }else if (type == Type_X){
-                        double scale = d.getWidth()/100f;
-
-                        while (p.getX()<=self.getWidth()){
-                            p.setLocation(p.getX()+scale,p.getY());
-                            self.setLocation(p);
-                            try {
-                                Thread.sleep(3);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    }
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    vB.remove(self);
-                    vB.revalidate();
-                }
-            }
-        });
-
-    }
+//    public static void slideOut_Box(Box vB, Container self,int type) {
+//        ThreadPool.poolExecutor.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                synchronized (self){
+//                    Point p = self.getLocation();
+//                    Dimension d = self.getSize();
+//                    if (type == Type_Y){
+//                        double scale = d.getHeight()/100f;
+//                        while (d.getHeight()>0){
+//                            d.setSize(d.getWidth(),d.getHeight()-scale);
+//                            self.setSize(d);
+//                            try {
+//                                Thread.sleep(2);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//
+//                    }else if (type == Type_X){
+//                        double scale = d.getWidth()/100f;
+//
+//                        while (p.getX()<=self.getWidth()){
+//                            p.setLocation(p.getX()+scale,p.getY());
+//                            self.setLocation(p);
+//                            try {
+//                                Thread.sleep(3);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//
+//                        }
+//                    }
+//                    try {
+//                        Thread.sleep(100);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    vB.remove(self);
+//                    vB.revalidate();
+//                }
+//            }
+//        });
+//
+//    }
 
 
 }

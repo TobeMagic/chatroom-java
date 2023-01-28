@@ -118,17 +118,17 @@ public class MainAddCard extends JLabel {
             }
         });
 
-        searchText.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent e) {
-                cancelButton.setIcon(cancelIcon);
-                if (searchText.getText().equals("")) {
-                    cancelButton.setIcon(null);
-                }
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    ClientAction.action.addUserNotice(searchText.getText());
-                }
-            }
-        });
+//        searchText.addKeyListener(new KeyAdapter() {
+//            public void keyReleased(KeyEvent e) {
+//                cancelButton.setIcon(cancelIcon);
+//                if (searchText.getText().equals("")) {
+//                    cancelButton.setIcon(null);
+//                }
+//                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+////                    ClientAction.action.addUserNotice(searchText.getText());
+//                }
+//            }
+//        });
 
 
         cancelButton.addMouseListener(new MouseAdapter() {
@@ -142,28 +142,28 @@ public class MainAddCard extends JLabel {
             }
         });
 
-        addButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                addButton.setIcon(addButtonC);
-                ClientAction.action.addUserNotice(searchText.getText());
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                addButton.setIcon(addButtonOut);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                addButton.setIcon(addButtonOut);
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                addButton.setIcon(addButtonIn);
-            }
-        });
+//        addButton.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mousePressed(MouseEvent e) {
+//                addButton.setIcon(addButtonC);
+//                ClientAction.action.addUserNotice(searchText.getText());
+//            }
+//
+//            @Override
+//            public void mouseReleased(MouseEvent e) {
+//                addButton.setIcon(addButtonOut);
+//            }
+//
+//            @Override
+//            public void mouseExited(MouseEvent e) {
+//                addButton.setIcon(addButtonOut);
+//            }
+//
+//            @Override
+//            public void mouseEntered(MouseEvent e) {
+//                addButton.setIcon(addButtonIn);
+//            }
+//        });
 
     }
 

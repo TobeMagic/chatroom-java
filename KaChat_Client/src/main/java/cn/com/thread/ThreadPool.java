@@ -5,5 +5,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class ThreadPool {
+    // 实例化线程池，最多有10个线程,核心线程4个。
     public static ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(4,10,1, TimeUnit.MINUTES,new ArrayBlockingQueue<>(3));
 }

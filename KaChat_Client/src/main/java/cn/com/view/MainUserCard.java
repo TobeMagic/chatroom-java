@@ -1,10 +1,6 @@
 package cn.com.view;
 
-import cn.com.action.ClientAction;
-import cn.com.dao.ClientDAO;
-import cn.com.pojo.User;
 import cn.com.util.ResourcesUtils;
-import cn.com.view.animate.Animate;
 import cn.com.view.viewutil.MiniSizeLabel;
 import cn.com.view.viewutil.QuitLabel;
 import cn.com.view.viewutil.Style;
@@ -13,8 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class MainUserCard extends JLabel{
     public ImageIcon userImageIcon;
@@ -37,7 +31,7 @@ public class MainUserCard extends JLabel{
     public JLabel buttonL;
     public JLabel userIcon;
     Font textFont ;
-    User user = ClientDAO.getUser();
+//    User user = ClientDAO.getUser();
     ImageIcon imageIcon;
     MainUserCard(){
 
@@ -47,8 +41,8 @@ public class MainUserCard extends JLabel{
         uNameLabel = new JLabel();
         pwLabel = new JLabel();
         pwrLabel = new JLabel();
-        uIDText = new JTextField("UID:"+user.getID());
-        uNameText = new JTextField("用户名:"+user.getName());
+//        uIDText = new JTextField("UID:"+user.getID());
+//        uNameText = new JTextField("用户名:"+user.getName());
         pwText = new JPasswordField("请输入需要修改的密码");
         pwrText = new JPasswordField("请再次输入密码");
         buttonL = new JLabel();
@@ -59,7 +53,7 @@ public class MainUserCard extends JLabel{
         gIcon = new ImageIcon(ResourcesUtils.getResource("/view/icon/mainview/user/gtext.png", "gtext", ".png").getAbsolutePath());
         bIcon = new ImageIcon(ResourcesUtils.getResource("/view/icon/mainview/user/btext.png", "btext", ".png").getAbsolutePath());
         textFont =  new Font("黑体",0,20);
-        imageIcon = new ImageIcon(user.getPortrait().getImage());
+//        imageIcon = new ImageIcon(user.getPortrait().getImage());
         init();
         assemble();
         setAction();
@@ -164,33 +158,33 @@ public class MainUserCard extends JLabel{
         uNameText.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (uNameText.isEditable()) {
-                    if (ClientAction.action.textFocusGained(uNameText,"用户名:"+user.getName())){
-                        ClientAction.action.textFocusGained(uNameText,"1~10位中文英文数字或空格");
-                    }
-                    uNameLabel.setIcon(gIcon);
-                    uNameText.setForeground(Color.white);
-                }
+//                if (uNameText.isEditable()) {
+//                    if (ClientAction.action.textFocusGained(uNameText,"用户名:"+user.getName())){
+//                        ClientAction.action.textFocusGained(uNameText,"1~10位中文英文数字或空格");
+//                    }
+//                    uNameLabel.setIcon(gIcon);
+//                    uNameText.setForeground(Color.white);
+//                }
 
             }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (uNameText.isEditable()) {
-                    if(!ClientAction.action.textFocusLost(uNameText,"用户名:"+user.getName())){
-                        if(!ClientAction.action.validate(uNameText.getText(),"^[\u4E00-\u9FA5A-Za-z0-9 :]{1,10}$")){
-                            uNameLabel.setIcon(yIcon);
-                            Animate.dither(uNameLabel);
-                            uNameText.setText("1~10位中文英文数字或空格");
-                        }
-                    } else {
-                        uNameLabel.setIcon(textIcon);
-                        uNameText.setForeground(Color.black);
-                    }
-                }
-            }
-        });
-        pwText.addFocusListener(new FocusAdapter() {
+//
+//            @Override
+//            public void focusLost(FocusEvent e) {
+//                if (uNameText.isEditable()) {
+//                    if(!ClientAction.action.textFocusLost(uNameText,"用户名:"+user.getName())){
+//                        if(!ClientAction.action.validate(uNameText.getText(),"^[\u4E00-\u9FA5A-Za-z0-9 :]{1,10}$")){
+//                            uNameLabel.setIcon(yIcon);
+//                            Animate.dither(uNameLabel);
+//                            uNameText.setText("1~10位中文英文数字或空格");
+//                        }
+//                    } else {
+//                        uNameLabel.setIcon(textIcon);
+//                        uNameText.setForeground(Color.black);
+//                    }
+//                }
+//            }
+//        });
+   /*     pwText.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
                 if (pwText.isEditable()) {
@@ -221,107 +215,108 @@ public class MainUserCard extends JLabel{
                 }
 
             }
-        });
+        });*/
 
-        pwrText.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (pwrText.isEditable()) {
-                    ClientAction.action.pwFocusGained(pwrText,"输入的密码不一致");
-                    ClientAction.action.pwFocusGained(pwrText,"请再次输入密码");
-                    pwrLabel.setIcon(gIcon);
-                    pwrText.setForeground(Color.white);
-                }
+//        pwrText.addFocusListener(new FocusAdapter() {
+//            @Override
+//            public void focusGained(FocusEvent e) {
+//                if (pwrText.isEditable()) {
+//                    ClientAction.action.pwFocusGained(pwrText,"输入的密码不一致");
+//                    ClientAction.action.pwFocusGained(pwrText,"请再次输入密码");
+//                    pwrLabel.setIcon(gIcon);
+//                    pwrText.setForeground(Color.white);
+//                }
+//
+//            }
+//
+////            @Override
+////            public void focusLost(FocusEvent e) {
+////                if (pwrText.isEditable()) {
+////                    ClientAction.action.pwFocusLost(pwrText,"请再次输入密码");
+////                    if(!(pwText.getText().equals("")||pwText.getText().equals("请输入需要修改的密码"))){
+////                        if (!pwrText.getText().equals(pwText.getText())){
+////                            Animate.dither(pwrLabel);
+////                            pwrLabel.setIcon(yIcon);
+////                            pwrText.setEchoChar((char) 0);
+////                            pwrText.setText("输入的密码不一致");
+////                        }
+////                    }else {
+////                        pwrLabel.setIcon(textIcon);
+////                        pwrText.setForeground(Color.black);
+////                    }
+////                }
+////
+////
+////            }
+//        });
 
-            }
+//        userIcon.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseReleased(MouseEvent e) {
+//                if (userIcon.getIcon()!=imageIcon) {
+//                    userImageIcon =  ClientAction.action.loadUserIcon(userIcon);
+//                }
+//
+//            }
+//        });
 
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (pwrText.isEditable()) {
-                    ClientAction.action.pwFocusLost(pwrText,"请再次输入密码");
-                    if(!(pwText.getText().equals("")||pwText.getText().equals("请输入需要修改的密码"))){
-                        if (!pwrText.getText().equals(pwText.getText())){
-                            Animate.dither(pwrLabel);
-                            pwrLabel.setIcon(yIcon);
-                            pwrText.setEchoChar((char) 0);
-                            pwrText.setText("输入的密码不一致");
-                        }
-                    }else {
-                        pwrLabel.setIcon(textIcon);
-                        pwrText.setForeground(Color.black);
-                    }
-                }
-
-
-            }
-        });
-
-        userIcon.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                if (userIcon.getIcon()!=imageIcon) {
-                    userImageIcon =  ClientAction.action.loadUserIcon(userIcon);
-                }
-
-            }
-        });
-
-        buttonL.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                if (buttonL.getIcon()==rIcon) {
-                    if (uNameLabel.getIcon()!=gIcon){
-                        Animate.dither(buttonL);
-                        Animate.dither(uNameLabel);
-                    }else if (pwLabel.getIcon()!=gIcon){
-                        Animate.dither(buttonL);
-                        Animate.dither(pwLabel);
-                    }else if (pwrLabel.getIcon()!=gIcon){
-                        Animate.dither(buttonL);
-                        Animate.dither(pwrLabel);
-                    }else if (userIcon.getIcon()==Style.addIcon){
-                        Animate.dither(buttonL);
-                        Animate.dither(userIcon);
-                    }else if (buttonL.getText().equals("注册成功")){
-                        Animate.dither(buttonL);
-                    }else {
-                        ClientAction.action.upDataByUser(uNameText.getText(),pwText.getText(),userImageIcon);
-                        uNameText.setEditable(false);
-                        uNameText.setForeground(Color.black);
-                        uNameText.setText("用户名:"+uNameText.getText());
-                        pwText.setEditable(false);
-                        pwText.setForeground(Color.black);
-                        pwrText.setEditable(false);
-                        pwrText.setForeground(Color.black);
-                        pwLabel.setLocation(999,999);
-                        pwrLabel.setLocation(999,999);
-                        ImageIcon imageIcon = new ImageIcon(user.getPortrait().getImage());
-                        imageIcon.setImage(imageIcon.getImage().getScaledInstance(120,120,Image.SCALE_AREA_AVERAGING));
-                        userIcon.setIcon(imageIcon);
-                        uNameLabel.setIcon(textIcon);
-                        pwLabel.setIcon(textIcon);
-                        pwrLabel.setIcon(textIcon);
-                        buttonL.setText("修改成功√");
-                        buttonL.setIcon(gIcon);
-                    }
-                }else {
-
-                    uNameText.setEditable(true);
-                    pwText.setEditable(true);
-                    pwrText.setEditable(true);
-                    userIcon.setIcon(Style.addIcon);
-                    buttonL.setText("提交修改");
-                    buttonL.setIcon(rIcon);
-                    pwLabel.setLocation(uNameLabel.getX(),uNameLabel.getY()+80);
-                    pwText.setEchoChar((char) 0);
-                    pwText.setText("请输入需要修改的密码");
-                    pwrLabel.setLocation(pwLabel.getX(),pwLabel.getY()+80);
-                    pwrText.setEchoChar((char) 0);
-                    pwrText.setText("请再次输入密码");
-                }
-
-            }
-        });
+//        buttonL.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseReleased(MouseEvent e) {
+//                if (buttonL.getIcon()==rIcon) {
+//                    if (uNameLabel.getIcon()!=gIcon){
+//                        Animate.dither(buttonL);
+//                        Animate.dither(uNameLabel);
+//                    }else if (pwLabel.getIcon()!=gIcon){
+//                        Animate.dither(buttonL);
+//                        Animate.dither(pwLabel);
+//                    }else if (pwrLabel.getIcon()!=gIcon){
+//                        Animate.dither(buttonL);
+//                        Animate.dither(pwrLabel);
+//                    }else if (userIcon.getIcon()==Style.addIcon){
+//                        Animate.dither(buttonL);
+//                        Animate.dither(userIcon);
+//                    }else if (buttonL.getText().equals("注册成功")){
+//                        Animate.dither(buttonL);
+//                    }else {
+//                        ClientAction.action.upDataByUser(uNameText.getText(),pwText.getText(),userImageIcon);
+//                        uNameText.setEditable(false);
+//                        uNameText.setForeground(Color.black);
+//                        uNameText.setText("用户名:"+uNameText.getText());
+//                        pwText.setEditable(false);
+//                        pwText.setForeground(Color.black);
+//                        pwrText.setEditable(false);
+//                        pwrText.setForeground(Color.black);
+//                        pwLabel.setLocation(999,999);
+//                        pwrLabel.setLocation(999,999);
+//                        ImageIcon imageIcon = new ImageIcon(user.getPortrait().getImage());
+//                        imageIcon.setImage(imageIcon.getImage().getScaledInstance(120,120,Image.SCALE_AREA_AVERAGING));
+//                        userIcon.setIcon(imageIcon);
+//                        uNameLabel.setIcon(textIcon);
+//                        pwLabel.setIcon(textIcon);
+//                        pwrLabel.setIcon(textIcon);
+//                        buttonL.setText("修改成功√");
+//                        buttonL.setIcon(gIcon);
+//                    }
+//                }else {
+//
+//                    uNameText.setEditable(true);
+//                    pwText.setEditable(true);
+//                    pwrText.setEditable(true);
+//                    userIcon.setIcon(Style.addIcon);
+//                    buttonL.setText("提交修改");
+//                    buttonL.setIcon(rIcon);
+//                    pwLabel.setLocation(uNameLabel.getX(),uNameLabel.getY()+80);
+//                    pwText.setEchoChar((char) 0);
+//                    pwText.setText("请输入需要修改的密码");
+//                    pwrLabel.setLocation(pwLabel.getX(),pwLabel.getY()+80);
+//                    pwrText.setEchoChar((char) 0);
+//                    pwrText.setText("请再次输入密码");
+//                }
+//
+//            }
+//        });
+    });
     }
 
 }
