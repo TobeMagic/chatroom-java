@@ -8,17 +8,18 @@ import cn.com.view.viewutil.Style;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.Serializable;
 
-public class ChatView extends JLabel {
+public class ChatView extends JLabel implements Serializable {
 
     private ChatView self;
     public JPanel chatOut;
-    public String toID;
+//    public String toID;
 
     BoxLayout boxLayout;
-    JScrollPane outJS ;
-    JScrollPane inJS ;
-    public JTextArea chatIn ;
+    JScrollPane outJS;
+    JScrollPane inJS;
+    public JTextArea chatIn;
     JLabel sendButton;
     private ImageIcon sendButtonOut;
     private ImageIcon sendButtonC;
@@ -29,8 +30,9 @@ public class ChatView extends JLabel {
     ScrollBarUI scrollBarUIOfIn;
     public JScrollBar jScrollBarOfOut;
     public JScrollBar jScrollBarOfIn;
-//    public ChatView(String toID){
-    public ChatView(){
+
+    //    public ChatView(String toID){
+    public ChatView() {
         self = this;
 //        this.toID = toID;
         chatOut = new JPanel();
@@ -55,16 +57,14 @@ public class ChatView extends JLabel {
     }
 
 
-
-
     private void init() {
 
-        chatOut.setSize(400,380);
+        chatOut.setSize(400, 200);
         chatOut.setBackground(new Color(0xeeeeee));
         chatOut.setLayout(boxLayout);
 
-      //
-        outJS.setBounds(5,5,410,380);
+//
+        outJS.setBounds(0, 0, 395, 335);
         outJS.setBorder(Style.nullBorder);
         outJS.setOpaque(false);
         outJS.getViewport().setOpaque(false);
@@ -75,7 +75,7 @@ public class ChatView extends JLabel {
 
         jScrollBarOfOut.setUI(scrollBarUIOfOut);
 
-        inJS.setBounds(5,390,410,115);
+        inJS.setBounds(0, 350, 395, 115);
         inJS.setBorder(Style.nullBorder);
         inJS.setOpaque(false);
         inJS.getViewport().setOpaque(false);
@@ -86,24 +86,25 @@ public class ChatView extends JLabel {
         jScrollBarOfIn.setUI(scrollBarUIOfIn);
 
 
-        chatIn.setSize(400,115);
         chatIn.setBackground(new Color(0xeeeeee));
         chatIn.setLineWrap(true);
         chatIn.setWrapStyleWord(true);
-        chatIn.setFont(new Font("黑体",0,20));
+        chatIn.setFont(new Font("黑体", 0, 20));
+        chatIn.setBounds(0, 350, 400, 115);
 
-        sendButton.setBounds(325,510,80,30);
+        sendButton.setBounds(290, 490, 80, 30);
         sendButton.setIcon(sendButtonOut);
 
 
-        sendText.setBounds(325,510,80,30);
+        sendText.setBounds(290, 490, 80, 30);
         sendText.setHorizontalAlignment(JTextField.CENTER);
         sendText.setForeground(Color.white);
-        sendText.setFont(new Font("黑体",0,17));
+        sendText.setFont(new Font("黑体", Font.PLAIN, 17));
         sendText.setText("发送");
 
-        setSizeLabel.setBounds(5,385,400,5);
+        setSizeLabel.setBounds(5, 385, 400, 5);
     }
+
     private void assemble() {
 
         add(outJS);
@@ -113,6 +114,7 @@ public class ChatView extends JLabel {
         add(sendButton);
 
     }
+
     private void setAction() {
 
         sendButton.addMouseListener(new MouseAdapter() {
@@ -125,7 +127,7 @@ public class ChatView extends JLabel {
             @Override
             public void mouseReleased(MouseEvent e) {
                 sendButton.setIcon(sendButtonIn);
-                if (chatIn.getText().equals("")){
+                if (chatIn.getText().equals("")) {
                     return;
                 }
                 ClientAction.action.sendMsg(self);
@@ -164,12 +166,12 @@ public class ChatView extends JLabel {
             public void keyPressed(KeyEvent e) {
 
 
-                if(e.isControlDown() && e.getKeyCode() == KeyEvent.VK_ENTER) {
+                if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_ENTER) {
                     e.consume();
                     chatIn.append("\n");
-                }else if (e.getKeyCode()==KeyEvent.VK_ENTER){
+                } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     e.consume();
-                    if (!chatIn.getText().equals("")){
+                    if (!chatIn.getText().equals("")) {
                         ClientAction.action.sendMsg(self);
                         jScrollBarOfOut.setValue(jScrollBarOfOut.getMaximum());
                     }
@@ -189,18 +191,18 @@ public class ChatView extends JLabel {
             public void mouseReleased(MouseEvent e) {
                 int size;
 
-                if(inJS.getHeight()<=30){
-                    chatOut.setSize(400,455 );
-                    outJS.setSize(410,455 );
+                if (inJS.getHeight() <= 30) {
+                    chatOut.setSize(400, 455);
+                    outJS.setSize(410, 455);
                     setSizeLabel.setLocation(5, 460);
-                    chatIn.setSize(400,40 );
-                    inJS.setBounds(5,465, 410,40 );
-                } else if(inJS.getHeight()>=465){
-                    chatOut.setSize(400,40 );
-                    outJS.setSize(410,40 );
+                    chatIn.setSize(400, 40);
+                    inJS.setBounds(5, 465, 410, 40);
+                } else if (inJS.getHeight() >= 465) {
+                    chatOut.setSize(400, 40);
+                    outJS.setSize(410, 40);
                     setSizeLabel.setLocation(5, 45);
-                    chatIn.setSize( 400,455 );
-                    inJS.setBounds(5,50, 410,455 );
+                    chatIn.setSize(400, 455);
+                    inJS.setBounds(5, 50, 410, 455);
                 }
             }
 
@@ -209,13 +211,13 @@ public class ChatView extends JLabel {
             @Override
             public void mouseDragged(MouseEvent e) {
 
-                if(inJS.getHeight()<=470&&inJS.getHeight()>=30){
+                if (inJS.getHeight() <= 470 && inJS.getHeight() >= 30) {
                     int pDragged = e.getY() - o[0];
-                    chatOut.setSize(400,chatOut.getHeight() + pDragged );
-                    outJS.setSize(410,outJS.getHeight() + pDragged );
+                    chatOut.setSize(400, chatOut.getHeight() + pDragged);
+                    outJS.setSize(410, outJS.getHeight() + pDragged);
                     setSizeLabel.setLocation(5, setSizeLabel.getY() + pDragged);
-                    chatIn.setBounds(0,chatIn.getY() + pDragged, 400,chatIn.getHeight() - pDragged );
-                    inJS.setBounds(5,inJS.getY() + pDragged, 410,inJS.getHeight() - pDragged );
+                    chatIn.setBounds(0, chatIn.getY() + pDragged, 400, chatIn.getHeight() - pDragged);
+                    inJS.setBounds(5, inJS.getY() + pDragged, 410, inJS.getHeight() - pDragged);
                 }
                 jScrollBarOfOut.setValue(jScrollBarOfOut.getMaximum());
                 jScrollBarOfIn.setValue(jScrollBarOfIn.getMaximum());

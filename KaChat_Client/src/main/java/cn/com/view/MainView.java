@@ -3,6 +3,7 @@ package cn.com.view;
 
 import cn.com.action.ClientAction;
 //import cn.com.dao.ClientDAO;
+import cn.com.thread.ClientListener;
 import cn.com.util.ResourcesUtils;
 import cn.com.view.animate.Animate;
 import cn.com.view.viewutil.Style;
@@ -20,22 +21,22 @@ public class MainView extends JFrame {
     JLabel mainView;
 //    JLabel menubarView;
 
-//    JLabel winMunuBar;
+    JLabel winMunuBar;
 
-    public JLabel bg1 ;
-    public JLabel bg2 ;
-    public CardLayout bgCardLayout ;
-    public JLabel mbUserIcon;
-    public JLabel mbUser;
-    public JLabel mbAdd;
-    public JLabel mbGroup;
-    public JLabel mbChat;
-    public JLabel select;
-    public JLabel dot;
-    public JLabel mblogo;
+    public JLabel bg1;
+    public JLabel bg2;
+    public CardLayout bgCardLayout;
+    //    public JLabel mbUserIcon;
+//    public JLabel mbUser;
+//    public JLabel mbAdd;
+//    public JLabel mbGroup;
+//    public JLabel mbChat;
+//    public JLabel select;
+//    public JLabel dot;
+//    public JLabel mblogo;
     public Point windowPoint;
 
-    private ImageIcon mbChatIcon;
+//    private ImageIcon mbChatIcon;
 //    private ImageIcon mbAddIcon;
 //    private ImageIcon mbGroupIcon;
 //    private ImageIcon mbSetingIcon;
@@ -45,20 +46,22 @@ public class MainView extends JFrame {
     private JLabel main;
     CardLayout cardLayout;
     private MainChatCard mainChatCard;
+    ClientListener clientListener;
 //    private MainAddCard mainAddCard;
 //    private MainUserCard mainUserCard;
 
-
-    public MainView(){
-        fWidth=800;
-        fHeight=700;
-
+//    public ChatView getChatView(){
+//        return this.mainChatCard.chatView;
+//    }
+    public MainView() {
+        fWidth = 422;
+        fHeight = 700;
 
         bg1 = new JLabel();
         bg2 = new JLabel();
         bgCardLayout = new CardLayout();
         self = this;
-        windowPoint = new Point( );
+        windowPoint = new Point();
 
         mainView = new JLabel();
 //        menubarView = new JLabel();
@@ -69,17 +72,17 @@ public class MainView extends JFrame {
 //        mbGroup = new JLabel();
 //        mblogo = new JLabel();
 //        select = new JLabel();
-        dot = new JLabel();
+//        dot = new JLabel();
 //        mbChatIcon = new ImageIcon(ResourcesUtils.getResource("/view/icon/mainview/chat.png", "chat", ".png").getAbsolutePath());
 //        mbGroupIcon = new ImageIcon(ResourcesUtils.getResource("/view/icon/mainview/group.png", "group", ".png").getAbsolutePath());
 //        mbAddIcon = new ImageIcon(ResourcesUtils.getResource("/view/icon/mainview/add.png", "add", ".png").getAbsolutePath());
 //        mbSetingIcon = new ImageIcon(ResourcesUtils.getResource("/view/icon/mainview/seting.png", "seting", ".png").getAbsolutePath());
 
-        cardLayout = new CardLayout(10,10);
+        cardLayout = new CardLayout(10, 10);
         main = new JLabel();
         quit = new JLabel();
         minimSize = new JLabel();
-//        winMunuBar = new JLabel();
+        winMunuBar = new JLabel();
         mainChatCard = new MainChatCard();
 //        mainAddCard = new MainAddCard();
 //        mainUserCard = new MainUserCard();
@@ -92,25 +95,22 @@ public class MainView extends JFrame {
     }
 
 
-
-
-
     private void init() {
         setLayout(null);
         setIconImage(Style.Icon.getImage());
-        setTitle("KaChat:主界面");
-        setBounds((Toolkit.getDefaultToolkit().getScreenSize().width-fWidth)/2,(Toolkit.getDefaultToolkit().getScreenSize().height-fHeight)/2,fWidth,fHeight); // 居中保持
+        setTitle("主界面");
+        setBounds((Toolkit.getDefaultToolkit().getScreenSize().width - fWidth) / 2, (Toolkit.getDefaultToolkit().getScreenSize().height - fHeight) / 2, fWidth, fHeight); // 居中保持
         setFocusable(true);
         setUndecorated(true);
         setBackground(Style.nullColor);
 
-        bg1.setBounds(0,0,fWidth,fHeight);
+        bg1.setBounds(0, 0, fWidth, fHeight);
         bg1.setLayout(bgCardLayout);
 
-        bg2.setBounds(0,0,fWidth,fHeight);
+        bg2.setBounds(0, 0, fWidth, fHeight);
         bg2.setLayout(null);
 
-        mainView.setBounds(0,30,425,640);
+        mainView.setBounds(0, 30, 422, 640);
         mainView.setIcon(new ImageIcon(ResourcesUtils.getResource("/view/icon/mainview/main.png", "main", ".png").getAbsolutePath()));
         mainView.setLayout(null);
 
@@ -144,28 +144,28 @@ public class MainView extends JFrame {
 //        select.setBounds(-10,mbChat.getY()-5,75,65);
 //        select.setIcon(new ImageIcon(ResourcesUtils.getResource("/view/icon/mainview/select.png", "select", ".png").getAbsolutePath()));
 
-        dot.setLocation(999,999);
-        dot.setSize(10,10);
-        dot.setIcon(new ImageIcon(ResourcesUtils.getResource("/view/icon/mainview/dot.png", "dot", ".png").getAbsolutePath()));
+//        dot.setLocation(999,999);
+//        dot.setSize(10,10);
+//        dot.setIcon(new ImageIcon(ResourcesUtils.getResource("/view/icon/mainview/dot.png", "dot", ".png").getAbsolutePath()));
 
-        quit.setBounds(375,45,20,20);
-        quit.setFont(new Font("黑体",0,20));
+        quit.setBounds(380, 45, 20, 20);
+        quit.setFont(new Font("黑体", 0, 20));
         quit.setForeground(Style.pinColor);
         quit.setText("●");
 
-        minimSize.setBounds(350,45,20,20);
-        minimSize.setFont(new Font("黑体",0,20));
+        minimSize.setBounds(350, 45, 20, 20);
+        minimSize.setFont(new Font("黑体", 0, 20));
         minimSize.setForeground(Style.bluColor);
         minimSize.setText("●");
-//        winMunuBar.setBounds(80,0,720,40);
+        winMunuBar.setBounds(0, 0, 422, 40);
 
 
-
-        main.setBounds(0,0,420,640);
+        main.setBounds(0, 0, 422, 640);
         main.setLayout(cardLayout);
 
 
     }
+
     private void assemble() {
 
 //        menubarView.add(mbUserIcon);
@@ -178,10 +178,10 @@ public class MainView extends JFrame {
 //        menubarView.add(select);
 //        main.add(mainUserCard,"user");
 //        mainChatCard.setVisible(true);
-        main.add(mainChatCard,"chat");
+        main.add(mainChatCard, "chat");
 //        main.add(mainAddCard,"add");
         mainView.add(main);
-//        mainView.add(winMunuBar);
+        mainView.add(winMunuBar);
 
         bg2.add(quit);
         bg2.add(minimSize);
@@ -192,6 +192,7 @@ public class MainView extends JFrame {
         add(bg1);
 
     }
+
     private void setAction() {
 //        mbUser.addMouseListener(new MouseAdapter() {
 //
@@ -266,56 +267,68 @@ public class MainView extends JFrame {
 //        });
 
         final Point origin = new Point();
-//        winMunuBar.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mousePressed(MouseEvent e) {
-//                origin.x = e.getX();
-//                origin.y = e.getY();
-//
-//            }
-//        });
-//        winMunuBar.addMouseMotionListener(new MouseAdapter() {
-//
-//            @Override
-//            public void mouseDragged(MouseEvent e) {
-//                Point point = getLocation();
-//                setLocation(point.x+e.getX()- origin.x,point.y+e.getY()- origin.y);
-//            }
-//        });
+        winMunuBar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                origin.x = e.getX();
+                origin.y = e.getY();
+                setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+
+            }
+        });
+        winMunuBar.addMouseMotionListener(new MouseAdapter() {
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                Point point = getLocation();
+                setLocation(point.x + e.getX() - origin.x, point.y + e.getY() - origin.y);
+                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+            }
+        });
 
         minimSize.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ClientAction.action.miniSize(self,bg1,bgCardLayout, windowPoint,false);
+                ClientAction.action.miniSize(self, bg1, bgCardLayout, windowPoint, false);
             }
         });
 
         quit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ClientAction.action.useQuit(self,bg1,bgCardLayout,true);
+                try {
+                    ClientAction.action.useQuit(self, bg1, bgCardLayout, true);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         addWindowListener(new WindowAdapter() {
             boolean stateSW = true;
+
             @Override
-            public void windowDeiconified(WindowEvent e){
+            public void windowDeiconified(WindowEvent e) {
                 super.windowIconified(e);
-                if (!stateSW){
-                    ClientAction.action.miniSize(self,bg1,bgCardLayout,windowPoint,true);
+                if (!stateSW) {
+                    ClientAction.action.miniSize(self, bg1, bgCardLayout, windowPoint, true);
                     stateSW = !stateSW;
                 }
             }
 
             @Override
             public void windowClosing(WindowEvent e) {
-                ClientAction.action.useQuit(self,bg1,bgCardLayout,false);
+                try {
+                    ClientAction.action.useQuit(self, bg1, bgCardLayout, false);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
             }
 
             @Override
             public void windowIconified(WindowEvent e) {
-                if (windowPoint.getX()==0){
-                    windowPoint.setLocation(self.getX(),self.getY());
+                if (windowPoint.getX() == 0) {
+                    windowPoint.setLocation(self.getX(), self.getY());
                 }
                 stateSW = !stateSW;
             }
@@ -323,8 +336,8 @@ public class MainView extends JFrame {
 
     }
 
-    public MainChatCard getChatView() {
-        return mainChatCard;
+    public JLabel getChatView() {
+        return mainChatCard.chatView;
     }
 
 //    public MainAddCard getMainAddCard() {

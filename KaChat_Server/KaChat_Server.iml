@@ -12,5 +12,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="KaChat_Common" />
+    <orderEntry type="module" module-name="KaChat_Client" />
   </component>
 </module>

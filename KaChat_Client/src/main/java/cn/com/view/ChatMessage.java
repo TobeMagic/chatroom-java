@@ -10,7 +10,8 @@ public class ChatMessage extends JPanel {
     String name;
     JLabel userIM;
 
-     public ChatMessage( ImageIcon icon,String msg,boolean isSelf){
+     public ChatMessage( String msg,boolean isSelf){
+         // 无头像，传消息
          this.icon = icon;
          this.msg = msg;
          this.isSelf = isSelf;

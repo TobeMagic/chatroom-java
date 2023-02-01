@@ -3,22 +3,23 @@ package cn.com.view.viewutil;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
+import java.io.Serializable;
 
 //自定义滚动条UI
-public class ScrollBarUI extends BasicScrollBarUI {
+public class ScrollBarUI extends BasicScrollBarUI implements Serializable {
 
     @Override
     protected void configureScrollBarColors() {
 
         // 把手
 
-         thumbColor = Color.PINK;
+        thumbColor = Color.PINK;
 
-         thumbHighlightColor = Color.PINK;
+        thumbHighlightColor = Color.PINK;
 
-         thumbDarkShadowColor = Color.PINK;
+        thumbDarkShadowColor = Color.PINK;
 
-         thumbLightShadowColor = Color.PINK;
+        thumbLightShadowColor = Color.PINK;
 
         // 滑道
 
@@ -26,7 +27,7 @@ public class ScrollBarUI extends BasicScrollBarUI {
 
         setThumbBounds(0, 0, 3, 50);
 
-         trackHighlightColor = Color.lightGray;
+        trackHighlightColor = Color.lightGray;
 
     }
 
@@ -60,7 +61,7 @@ public class ScrollBarUI extends BasicScrollBarUI {
 
             gp = new GradientPaint(0, 0, Style.bgColor,
 
-                    trackBounds.width, 0,Style.bgColor);
+                    trackBounds.width, 0, Style.bgColor);
 
         }
 
@@ -134,9 +135,9 @@ public class ScrollBarUI extends BasicScrollBarUI {
 
         // 设置填充颜色，这里设置了渐变，由下往上
 
-         g2.setPaint(new GradientPaint(c.getWidth() / 2, 1,Color.lightGray,
+        g2.setPaint(new GradientPaint(c.getWidth() / 2, 1, Color.lightGray,
 
-         c.getWidth() / 2, c.getHeight(), Color.lightGray));
+                c.getWidth() / 2, c.getHeight(), Color.lightGray));
 
         // 填充圆角矩形
 
@@ -177,4 +178,6 @@ public class ScrollBarUI extends BasicScrollBarUI {
         button.setBorder(new RoundBorder());
         return button;
     }
+
+
 }

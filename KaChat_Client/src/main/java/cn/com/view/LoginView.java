@@ -242,6 +242,7 @@ public class LoginView extends JFrame {
             public void mousePressed(MouseEvent e) {
                 origin.x = e.getX();
                 origin.y = e.getY();
+                setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
 
             }
         });
@@ -251,6 +252,7 @@ public class LoginView extends JFrame {
             public void mouseDragged(MouseEvent e) {
                 Point point = getLocation();
                 setLocation(point.x + e.getX() - origin.x, point.y + e.getY() - origin.y);
+                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
             }
         });
 
@@ -265,7 +267,11 @@ public class LoginView extends JFrame {
         quit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ClientAction.action.useQuit(self, bg1, bgCardLayout, true);
+                try {
+                    ClientAction.action.useQuit(self, bg1, bgCardLayout, true);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
 
             }
         });

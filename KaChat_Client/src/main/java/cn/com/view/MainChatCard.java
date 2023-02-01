@@ -1,8 +1,7 @@
 package cn.com.view;
 
+import cn.com.thread.ClientListener;
 import cn.com.util.ResourcesUtils;
-import cn.com.view.viewutil.MiniSizeLabel;
-import cn.com.view.viewutil.QuitLabel;
 import cn.com.view.viewutil.Style;
 
 import javax.swing.*;
@@ -12,30 +11,31 @@ import java.util.Objects;
 public class MainChatCard extends JLabel {
 
 
-//    private ImageIcon cancelIcon;
+    //    private ImageIcon cancelIcon;
 //    JTextField searchText;
-    JLabel quit;
-    JLabel minimSize;
+//    JLabel quit;
+//    JLabel minimSize;
     JLabel name;
     JLabel online;
-//    public DefaultListModel jListModel;
+    //    public DefaultListModel jListModel;
 //    public JList<User> jList;
 //    JScrollPane listJS;
-    JLabel cancelButton;
+//    JLabel cancelButton;
     public CardLayout cardLayout;
-    public JLabel chatView;
+    public JLabel chatView = new ChatView();
+    ClientListener clientListener;
 //    List<User> users;
 
-//    MainChatCard(List<User> users) {
+    //    MainChatCard(List<User> users) {
     MainChatCard() {
 
 
 //        this.users = users;
 //        cancelIcon = new ImageIcon(ResourcesUtils.getResource("/view/icon/mainview/chat/cancel.png", "cancel", ".png").getAbsolutePath());
-        cancelButton = new JLabel();
+//        cancelButton = new JLabel();
 //        searchText = new JTextField("搜索");
-        quit = new QuitLabel();
-        minimSize = new MiniSizeLabel();
+//        quit = new QuitLabel();
+//        minimSize = new MiniSizeLabel();
         name = new JLabel();
         online = new JLabel();
 //        jListModel = new DefaultListModel<>();
@@ -45,7 +45,7 @@ public class MainChatCard extends JLabel {
 //                users) {
 //            jListModel.addElement(user);
 //        }
-        chatView = new JLabel();
+
         cardLayout = new CardLayout();
         init();
         assemble();
@@ -57,11 +57,11 @@ public class MainChatCard extends JLabel {
 
     private void init() {
 
-        setBounds(0, 0, 200, 620);
+        setBounds(0, 0, 422, 622);
         setIcon(new ImageIcon(Objects.requireNonNull(ResourcesUtils.getResource("/view/icon/mainview/chat/mianbgview.png", "mianbgview", ".png")).getAbsolutePath()));
         setLayout(null);
 
-        cancelButton.setBounds(218, 23, 20, 20);
+//        cancelButton.setBounds(218, 23, 20, 20);
 
 //        listJS.setBorder(Style.nullBorder);
 //        listJS.setOpaque(false);
@@ -85,31 +85,33 @@ public class MainChatCard extends JLabel {
 //        searchText.setFont(new Font("黑体", 0, 12));
 //        searchText.setSelectionColor(Style.bgColor);
 
-        online.setBounds(10, 22, 20, 20);
-        online.setFont(new Font("黑体", 0, 20));
+        online.setBounds(20, 22, 20, 20);
+        online.setFont(new Font("黑体", Font.PLAIN, 20));
         online.setText("●");
         online.setForeground(Style.greenColor);
 
-        name.setBounds(40, 20, 250, 25);
-        name.setFont(new Font("黑体", 0, 20));
+        name.setBounds(50, 20, 250, 25);
+        name.setFont(new Font("黑体", Font.PLAIN, 20));
         name.setText("在线聊天室");
 
-        chatView.setBounds(290, 75, 410, 545);
-        chatView.setLayout(cardLayout);
+        chatView.setBounds(8, 83, 410, 544);
+//        chatView.setLayout(cardLayout);
+        chatView.setLayout(null);
 
 
     }
 
     private void assemble() {
 
-        add(quit);
-        add(minimSize);
-        add(cancelButton);
+//        add(quit);
+//        add(minimSize);
+//        add(cancelButton);
 //        add(listJS);
 //        add(searchText);
         add(online);
         add(name);
         add(chatView);
+//        clientListener.send(new Message(MessageType.JOIN, chatView));
     }
 
 //    private void setAction() {
