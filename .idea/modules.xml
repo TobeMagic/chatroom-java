@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/KaChat_Server/ChatRoom_Server.iml" filepath="$PROJECT_DIR$/KaChat_Server/ChatRoom_Server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/KaChat_Client/Chatroom_Client.iml" filepath="$PROJECT_DIR$/KaChat_Client/Chatroom_Client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ChatRoom_Server/ChatRoom_Server.iml" filepath="$PROJECT_DIR$/ChatRoom_Server/ChatRoom_Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ChatRoom_Client/Chatroom_Client.iml" filepath="$PROJECT_DIR$/ChatRoom_Client/Chatroom_Client.iml" />
       <module fileurl="file://$PROJECT_DIR$/Client/Client.iml" filepath="$PROJECT_DIR$/Client/Client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/KaChat_Common/KaChat_Common.iml" filepath="$PROJECT_DIR$/KaChat_Common/KaChat_Common.iml" />
+<!--      <module fileurl="file://$PROJECT_DIR$/KaChat_Common/KaChat_Common.iml" filepath="$PROJECT_DIR$/KaChat_Common/KaChat_Common.iml" />-->
       <module fileurl="file://$PROJECT_DIR$/Server/Server.iml" filepath="$PROJECT_DIR$/Server/Server.iml" />
     </modules>
   </component>
