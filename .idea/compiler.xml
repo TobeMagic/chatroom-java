@@ -6,18 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ChatRoom_Server" />
         <module name="KaChat_Common" />
+        <module name="Chatroom_Client" />
         <module name="Client" />
         <module name="Server" />
-        <module name="KaChat_Server" />
-        <module name="KaChat_Client" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Chatroom_Client" target="1.8" />
+      <module name="ChatRoom_Server" target="1.8" />
       <module name="Client" target="1.8" />
-      <module name="KaChat_Client" target="1.8" />
       <module name="KaChat_Common" target="1.8" />
-      <module name="KaChat_Server" target="1.8" />
       <module name="Server" target="8" />
     </bytecodeTargetLevel>
   </component>
