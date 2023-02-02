@@ -120,10 +120,6 @@ public class LoginView extends JFrame {
         left.setLayout(null);
         left.setIcon(new ImageIcon(ResourcesUtils.getResource("/view/icon/loginview/left.png", "left", ".png").getAbsolutePath()));
 
-//        register.setBounds(left.getX()+10,left.getY()+10,1380,550);
-//        register.setVisible(false);
-//        register.setIcon(new ImageIcon(ResourcesUtils.getResource("/view/icon/registerview/registerbg.png", "registerbg", ".png").getAbsolutePath()));
-//        register.setLayout(null);
 
         fPicture.setBounds(10, 10, 1380, 550);
         fPicture.setLayout(null);
@@ -160,24 +156,6 @@ public class LoginView extends JFrame {
         uidL.setIcon(textIcon);
 
 
-//        pwdL.setOpaque(false);
-//        pwdL.setBounds(80,325,500,150);
-//        pwdL.setIcon(textIcon);
-//
-//        introduce.setOpaque(false);
-//        introduce.setBounds(105,275,390,70);
-//        introduce.setDragEnabled(true);
-//        introduce.setFont(Style.textFont);
-//        introduce.setBorder(Style.nullBorder);
-//        introduce.set(JTextField.CENTER);
-
-//        pwgText.setOpaque(false);
-//        pwgText.setBounds(105,365,390,70);
-//        pwgText.setFont(Style.textFont);
-//        pwgText.setBorder(Style.nullBorder);
-//        pwgText.setHorizontalAlignment(JTextField.CENTER);
-//        pwgText.setEchoChar((char)0);
-
         buttonL.setOpaque(false);
         buttonL.setBounds(65, 510, 500, 150);
         buttonL.setIcon(buttonIcon);
@@ -189,10 +167,6 @@ public class LoginView extends JFrame {
         buttonClickL.setFont(buttonFont);
 
 
-//        registerIcon.setBounds(255,610,100,40);
-//        registerIcon.setIcon(new ImageIcon(ResourcesUtils.getResource("/view/icon/loginview/registericon.png", "registericon", ".png").getAbsolutePath()));
-//        registerIcon.setHorizontalTextPosition(SwingConstants.CENTER);
-//        registerIcon.setText("<html><div style=\"font-family:Microsoft YaHei;color:white;font-size:12px\" >注册账号</div></html>");
     }
 
     private void assemble() {
@@ -295,56 +269,6 @@ public class LoginView extends JFrame {
         });
 
 
-//        uIDText.addFocusListener(new FocusAdapter() {
-//            @Override
-//            public void focusLost(FocusEvent e) {
-//                ClientAction.action.textFocusLost(uIDText,"请输入UID");
-//                uIDText.setLocation(105,275);
-//                uidL.setLocation(80,235);
-//                uidL.setIcon(textIcon);
-//            }
-//
-//            @Override
-//            public void focusGained(FocusEvent e) {
-//
-//                ClientAction.action.textFocusGained(uIDText,"请输入UID");
-//                uIDText.setLocation(100,265);
-//                uidL.setLocation(65,235);
-//                uidL.setIcon(textClickIcon);
-//                msg.setText("");
-//            }
-//        });
-//
-//        pwgText.addFocusListener(new FocusAdapter() {
-//            @Override
-//            public void focusLost(FocusEvent e) {
-//            ClientAction.action.pwFocusLost(pwgText,"请输入密码");
-//            pwgText.setLocation(105,365);
-//            pwdL.setLocation(80,325);
-//            pwdL.setIcon(textIcon);
-//            }
-//            @Override
-//            public void focusGained(FocusEvent e) {
-//                ClientAction.action.pwFocusGained(pwgText,"请输入密码");
-//                pwgText.setLocation(100,355);
-//                pwdL.setLocation(65,325);
-//                pwdL.setIcon(textClickIcon);
-//                msg.setText("");
-//
-//            }
-//
-//        });
-
-//        pwgText.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyReleased(KeyEvent e) {
-//                if (e.getKeyCode()==KeyEvent.VK_ENTER){
-//                    ClientAction.action.login();
-//
-//                }
-//            }
-//        });
-
         buttonClickL.addMouseListener(new MouseAdapter() {
 //            @Override
 //            public void mousePressed(MouseEvent e) {
@@ -368,36 +292,15 @@ public class LoginView extends JFrame {
             public void mouseClicked(MouseEvent e) {
 //                load
                 buttonClickL.setText("正在登录请稍后...");
-//                try {
-//                    Thread.sleep(5000);
-//                } catch (InterruptedException ex) {
-//                    ex.printStackTrace();
-//                }
-//                if()
+
                 ClientAction.action.login();
-//                self.dispose();
 
-//                MainView test = new MainView();
-
-//                test.getChatView();
-//                ClientAction.action.creaMainView();
             }
 
 
         });
 
-//        registerIcon.addMouseListener(new MouseAdapter() {
-//            boolean switchOn = true;
-//            @Override
-//            public void mouseReleased(MouseEvent e) {
-//                if (switchOn){
-//                    register.setVisible(true);
-//                }else {
-//                    register.setVisible(false);
-//                }
-//                switchOn=!switchOn;
-//            }
-//        });
+
     }
 
 

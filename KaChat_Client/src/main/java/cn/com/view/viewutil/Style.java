@@ -17,6 +17,6 @@ public class Style {
     public static final Color greenColor = (new Color(0x80c269));
     public static final Font textFont = new Font("黑体", Font.CENTER_BASELINE, 25);
 
-    public static final ImageIcon addIcon = new ImageIcon(ResourcesUtils.getResource("/view/icon/registerview/defaultIcon.png", "defaultIcon", ".png").getAbsolutePath());
+//    public static final ImageIcon addIcon = new ImageIcon(ResourcesUtils.getResource("/view/icon/registerview/defaultIcon.png", "defaultIcon", ".png").getAbsolutePath());
     public static final ImageIcon Icon = new ImageIcon(ResourcesUtils.getResource("/view/icon/loginview/kachaticon.png", "kachaticon", ".png").getAbsolutePath());
 }

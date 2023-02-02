@@ -1,6 +1,5 @@
 package cn.com.action;
 
-//import cn.com.dao.ClientDAO;
 
 import cn.com.thread.ClientListener;
 import cn.com.thread.ThreadPool;
@@ -35,8 +34,6 @@ public class ClientAction implements Serializable {
         Animate.slideXOnL(loginView.pictures);
 //        clientListener = new ClientListener("127.0.0.1",9090);
         clientListener = new ClientListener("localhost", 8888);
-//        113.245.83.186
-//        clientListener = new ClientLS                                                                                                                     istener("169.254.183.20",7758);
 
         ThreadPool.poolExecutor.execute(clientListener);
 //        new Thread(clientListener).start();
@@ -101,11 +98,6 @@ public class ClientAction implements Serializable {
     }
 
 
-//    public void upData(User u) {
-//        ClientDAO.upData(u);
-//    }
-
-
     public void sendMsg(ChatView chatView) {
         ImageIcon AImagician = new ImageIcon(Objects.requireNonNull(ResourcesUtils.getResource("/view/icon/portrait/portrait" + ".png", "portrait", ".png")).getAbsolutePath());
         ChatMessage selfMsg = new ChatMessage(AImagician, chatView.chatIn.getText(), true, "AImagician");
@@ -138,41 +130,6 @@ public class ClientAction implements Serializable {
 //    public JLabel getChatView() {
 //        return this.mainView.getChatView();
 //    }
-
-    public boolean textFocusLost(JTextField textField, String text) {
-        if (textField.getText().equals("")) {
-            textField.setText(text);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean textFocusGained(JTextField textField, String text) {
-
-        if (textField.getText().equals(text)) {
-            textField.setText("");
-            return false;
-        }
-        return true;
-    }
-
-    public boolean pwFocusGained(JPasswordField pwText, String text) {
-        if (pwText.getText().equals(text)) {
-            pwText.setText("");
-            pwText.setEchoChar('●');
-            return false;
-        }
-        return true;
-    }
-
-    public boolean pwFocusLost(JPasswordField pwText, String text) {
-        if (pwText.getText().equals("")) {
-            pwText.setEchoChar((char) 0);
-            pwText.setText(text);
-            return true;
-        }
-        return false;
-    }
 
     public boolean isNullLV() {
         return loginView == null;
