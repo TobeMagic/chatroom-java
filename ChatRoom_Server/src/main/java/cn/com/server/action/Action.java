@@ -21,7 +21,6 @@ public class Action {
     public static Action action;
 
     public Action() {
-//        dao = new Dao();
         action = this;
         try {
             serverSocket = new ServerSocket(8888);

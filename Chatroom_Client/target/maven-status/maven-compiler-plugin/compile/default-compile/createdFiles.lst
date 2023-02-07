@@ -1,6 +1,7 @@
 cn\com\view\viewutil\RoundBorder.class
 cn\com\Start.class
 cn\com\util\ResourcesUtils.class
+cn\com\view\animate\LodingJLabel$ReboundListener.class
 cn\com\view\LoginView$1.class
 cn\com\view\ChatView$4.class
 cn\com\view\animate\Animate$2.class
@@ -23,14 +24,19 @@ cn\com\view\animate\Animate$3.class
 cn\com\view\ChatView$5.class
 cn\com\view\LoginView$5.class
 cn\com\view\MainView$4.class
+cn\com\view\animate\Animate$6.class
 cn\com\view\MainView$1.class
 cn\com\view\LoginView.class
+cn\com\view\viewutil\MiniSizeLabel.class
 cn\com\view\animate\Animate$5.class
 cn\com\view\animate\Animate.class
+cn\com\view\animate\LodingJLabel$1.class
 cn\com\view\ChatMessage.class
 cn\com\action\ClientAction.class
 cn\com\view\MainView$2.class
+cn\com\view\animate\LodingJLabel.class
 cn\com\thread\ThreadPool.class
+cn\com\view\viewutil\QuitLabel.class
 cn\com\view\animate\Animate$4.class
 cn\com\view\LoginView$6.class
 cn\com\view\viewutil\ScrollBarUI.class

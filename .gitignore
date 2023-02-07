@@ -1,0 +1,8 @@
+logs/
+.idea/
+.env.*
+*.bak
+*.tmp
+dist/
+*.log
+*.tmp
